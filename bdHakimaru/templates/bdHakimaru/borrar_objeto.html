@@ -1,0 +1,31 @@
+{% extends 'style.html' %}
+{% load static %}
+
+{% block title %}
+<title>Castigar a Dororo</title>
+{% endblock title %}
+
+    <body>
+        {% block body %}
+       
+        <form method="POST" >
+
+            {% csrf_token %}
+            
+            <div id="capa1p1" style="vertical-align: middle; align-content: center; ">
+                <center>
+                    <h3 style="color: white; font-family: 'roboto''condensed';">¿Deseas castigar a Dodoro?</h3>
+
+                    <div  style="align-self: center; align-content: center; align-items: center;">
+                        <img style="margin-bottom: 70px; " width="320px" height="306px" src="{% static 'images/dororoLlorando.png' %}"  alt='Dororo Llorando Que Sad'>
+                    </div>
+                        <button id="btnWh" type="submit" class="waves-effect waves-light btn red red" style="align-self: center;">
+                            <span class="fa fa-undo">CASTIGAR</span>
+                        </button>
+                        <a id="btnWh" class="waves-effect waves-light btn red"  href = "{% url 'bdHakimaru:objetos_dororo'%}">NO CASTIGAR</a>
+                </center>
+            </div>
+        </form>
+
+        {% endblock body %}
+    <body>

@@ -1,0 +1,48 @@
+{% extends 'style.html' %}
+{% block body %}
+<head>
+<header style="width: 100%; height:60px;">
+  <div style="margin-top: 15px;  width: 100%; text-align: center;">
+  <a id="ahead" href="{% url 'bdHakimaru:Home' %}">
+    Hyakkimaru
+  </a>
+</div>
+</header>
+{% block title %}
+<title>Registro de combates</title>
+{% endblock title %}
+</head>
+<body>
+  <div style="color: black;">
+<div class="tablaConsulta" > 
+        
+    <!--titulos--> 
+    <table id="tabla" class="highlight centered"> <thead> <tr> 
+     <th>Lugar de la pelea</th>
+     <th>Monstruo vencido</th>
+     <th>Pieza obtenida</th>
+    <th > </th>
+    
+  
+  </tr>
+  </thead>
+  <body>
+    <div id="capa3"></div>
+    <thead></thead>
+    {% for item in obj %}
+    <tr>
+       <!--Datos--> 
+      <td><img  src = "{{item.lugar.imagen.url}}" width="100" height="100"><br><br>{{item.lugar.nombre}}</td>
+      <td><img  src = "{{item.monstruo.imagen.url}}" width="100" height="100"><br><br>{{item.monstruo.nombre}}</td>
+      <td>{{item.monstruo.pieza}}</td>
+      <td>   
+    </td>
+    </tr> {% endfor %} </table>  </tbody> </div>
+  </div>
+    <div id="capa4">
+        <a id="btnWhInf" class="waves-effect waves-light btn red" href = "{% url 'bdHakimaru:nueva_pelea' %}">Nueva pelea</a>
+      </div>
+  
+{% endblock body %}
+</div>
+<body>

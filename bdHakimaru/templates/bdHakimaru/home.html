@@ -1,0 +1,48 @@
+{% extends 'style.html' %}
+{% load static %}
+<html>
+<head>
+    {% block title %}
+        <title>Hyakkymaru: Página Principal</title>
+    {% endblock title %}
+
+<body class="bod1" > 
+    <div style="background-color: black;">
+    {% block body %}
+    <div style="padding-top: 20px;">
+        <p id="tl">Hyakkimaru</p>
+    </div>   
+
+    <div id="capa1">
+        <img width="166" height="427.5" src="{% static 'images/hyakki.jpg' %}"  alt='Hyakkimaru'>
+    </div>
+
+    <div id="capa2">
+        <table>
+            <tr>
+                <td>
+                    <a id="btnWh" class="waves-effect waves-light btn red" href = "{% url 'bdHakimaru:consultar_peleas' %}">PELEAS</a>
+                </td>
+                <td>
+                    <a id="btnWh" class="waves-effect waves-light btn red" href = "{% url 'bdHakimaru:consultar_demonios'%}">DEMONIOS</a>
+                </td>
+                <td>
+                    <a id="btnWh" class="waves-effect waves-light btn red"  href = "{% url 'bdHakimaru:objetos_dororo'%}">DORORO</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="con">
+        <p>{{ piezas }} / 48</p>
+    </div>
+
+    {% endblock body %}
+</div>
+</body>
+
+
+
+
+
+</html>

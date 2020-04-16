@@ -1,0 +1,23 @@
+<html>
+
+  <title>Peleas</title>
+
+<body>
+
+
+   <form  method = "POST" enctype="multipart/form-data">
+     
+  {% csrf_token %} <!--Toquén de seguirad para django -->
+
+ 
+  {{ form.as_p }}
+ 
+      <button type="submit" class="btn waves-effect waves-light green ">
+        Guardar
+      </button>
+<br><br>
+    </form>
+  </body>
+
+    </html>
+
