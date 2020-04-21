@@ -29,6 +29,9 @@
                 <td>
                     <a id="btnWh" class="waves-effect waves-light btn red"  href = "{% url 'bdHakimaru:objetos_dororo'%}">DORORO</a>
                 </td>
+                <td>
+                    <a id="btnWh" class="waves-effect waves-light btn red"  href = "{% url 'bdHakimaru:imprimir_monstruos'%}">REPORTE EN PDF</a>
+                </td>
             </tr>
         </table>
     </div>
@@ -36,7 +39,6 @@
     <div id="con">
         <p>{{ piezas }} / 48</p>
     </div>
-
     {% endblock body %}
 </div>
 </body>

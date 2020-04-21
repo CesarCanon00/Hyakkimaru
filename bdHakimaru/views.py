@@ -3,6 +3,7 @@ from django.views import generic
 from django.urls import reverse_lazy
 from bdHakimaru.models import Lugar, Pieza, Monstruo, Pelea, Objeto
 from bdHakimaru.forms import pelea_form, monstruo_form, lugar_form, objetos_form
+from django.http import HttpResponse
 
 class Home(generic.View):
     model = Pieza
@@ -64,3 +65,43 @@ class borrar_objeto(generic.DeleteView):
     template_name = 'bdHakimaru/borrar_objeto.html'
     context_object_name = 'obj'
     success_url = reverse_lazy("bdHakimaru:objetos_dororo")
+
+def imprimir_monstruos(self):
+    import io
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, TableStyle
+    from reportlab.lib.styles import getSampleStyleSheet
+    from reportlab.lib import colors
+    from reportlab.lib.pagesizes import letter
+    from reportlab.platypus import Table
+
+    response = HttpResponse(content_type='application/pdf')
+    buff = io.BytesIO()
+    doc = SimpleDocTemplate(buff,
+                            pagesize=letter,
+                            rightMargin=40,
+                            leftMargin=40,
+                            topMargin=60,
+                            bottomMargin=18,
+                            )
+    monstruos = []
+    styles = getSampleStyleSheet()
+    header = Paragraph("Listado de monstruos", styles['Heading1'])
+    monstruos.append(header)
+    headings = ('Id', 'Nombre', 'Pieza')
+    todosmonstruos = [(p.id, p.nombre, p.pieza.nombre)
+                        for p in Monstruo.objects.all().order_by('pk')]
+   
+    t = Table([headings] + todosmonstruos)
+    t.setStyle(TableStyle(
+        [
+            ('GRID', (0, 0), (3, -1), 1, colors.dodgerblue),
+            ('LINEBELOW', (0, 0), (-1, 0), 2, colors.darkblue),
+            ('BACKGROUND', (0, 0), (-1, 0), colors.dodgerblue)
+        ]
+    ))
+
+    monstruos.append(t)
+    doc.build(monstruos)
+    response.write(buff.getvalue())
+    buff.close()
+    return response

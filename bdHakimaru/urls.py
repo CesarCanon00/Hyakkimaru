@@ -1,5 +1,6 @@
 from django.urls import path
-from bdHakimaru.views import  Home, nueva_pelea, consultar_peleas, consultar_demonios, nuevo_monstruo, nuevo_lugar, objeto_list, nuevo_objeto, borrar_objeto
+from bdHakimaru.views import  Home, nueva_pelea, consultar_peleas, consultar_demonios, nuevo_monstruo, nuevo_lugar, objeto_list, nuevo_objeto, borrar_objeto,imprimir_monstruos
+
 
 urlpatterns = [
     path('',Home.as_view(),name='Home'),
@@ -11,4 +12,5 @@ urlpatterns = [
     path('bdHakimaru/objeto_list',objeto_list.as_view(), name = 'objetos_dororo'),
     path('bdHakimaru/nuevo_objeto',nuevo_objeto.as_view(), name = 'nuevo_objeto'),
     path('bdHakimaru/delete/<int:pk>',borrar_objeto.as_view(), name = 'borrar_objeto'),
+    path('bdHakimaru/imprimir',imprimir_monstruos,name = 'imprimir_monstruos'),
 ]
